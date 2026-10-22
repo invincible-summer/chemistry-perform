@@ -1,0 +1,46 @@
+name: Deploy public site
+
+on:
+  push:
+    branches: [arena/c14191f2-chemistry-perform]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install the single runtime dependency
+        run: npm ci
+      - name: Assemble static site
+        run: |
+          mkdir -p _site/vendor/three
+          cp index.html _site/index.html
+          cp -R src _site/src
+          cp node_modules/three/build/three.module.js _site/vendor/three/three.module.js
+          cp node_modules/three/build/three.core.js _site/vendor/three/three.core.js
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

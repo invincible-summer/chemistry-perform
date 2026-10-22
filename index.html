@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111c22" />
+  <title>微光 · 化学实验室</title>
+  <link rel="stylesheet" href="./src/ui/styles.css" />
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script>
+</head>
+<body>
+  <main id="app">
+    <div id="stage" aria-label="三维化学实验室场景"></div>
+    <div class="scene-vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="微光实验室主页"><span class="brand-mark"><i></i><i></i><i></i></span><span class="brand-name">微光<span>实验室</span></span></a>
+      <div class="session"><span class="live-dot"></span><span>开放实验台</span><b>/</b><span id="clock">14:32</span></div>
+      <div class="top-actions"><button class="icon-button" id="sound-toggle" title="声音开关">♫</button><button class="icon-button" id="help-button" title="实验指南">?</button><button class="reset-button" id="reset-button"><span>↺</span> 重置实验</button></div>
+    </header>
+    <div class="scene-label"><span class="scene-index">01</span><span>反应观察区</span><span class="label-line"></span><span class="scene-hint">拖动旋转 · 滚轮缩放</span></div>
+    <section class="quick-stats" aria-label="实验状态"><div><span class="stat-pip teal"></span><span id="status-text">实验台就绪</span></div><div class="stat-divider"></div><div><span class="stat-icon">◷</span><span id="sim-clock">00:00</span></div><div class="stat-divider"></div><div><span class="stat-icon">⌖</span><span id="lab-temp">22.0 °C</span></div></section>
+    <aside class="left-rail">
+      <div class="rail-heading"><span class="eyebrow">WORKSPACE</span><button class="text-button" id="toggle-shelf">收起 <span>⌃</span></button></div>
+      <div class="shelf-card"><div class="shelf-title"><div><span class="eyebrow">REAGENTS · 试剂架</span><h2>常用试剂</h2></div><span class="count-pill">14</span></div><div id="reagent-list" class="reagent-list"></div><div class="shelf-foot"><span class="shelf-light"></span> 选择试剂，再点击器皿加入</div></div>
+      <div class="tool-card"><div class="tool-title"><span class="eyebrow">TOOLS · 器具</span><button id="all-tools" class="mini-link">全部 <span>↗</span></button></div><div id="tool-grid" class="tool-grid"></div></div>
+    </aside>
+    <aside class="right-panel" id="inspector">
+      <div class="panel-top"><div><span class="eyebrow">LIVE READOUT</span><h2>实验记录</h2></div><button class="close-panel" id="close-panel" title="收起面板">—</button></div>
+      <div class="selected-object"><div class="object-icon" id="object-icon">⚗</div><div><span class="object-type" id="object-type">实验器皿</span><strong id="object-name">选择一个器皿</strong></div><span class="selection-ring"></span></div>
+      <div class="readout-grid"><div class="readout"><span>溶液体积</span><strong id="volume-readout">— <small>mL</small></strong><div class="meter"><i id="volume-meter"></i></div></div><div class="readout"><span>温度</span><strong id="temp-readout">22.0 <small>°C</small></strong><div class="meter warm"><i id="temp-meter"></i></div></div></div>
+      <div class="ph-row"><span>酸碱度 <b id="ph-value">—</b></span><div class="ph-gradient"><i id="ph-marker"></i></div><div class="ph-scale"><span>0 酸</span><span>中性</span><span>14 碱</span></div></div>
+      <div class="contents-section"><div class="section-head"><span>溶液组成</span><span id="species-count">—</span></div><div class="contents-list" id="contents-list"><div class="empty-note">选中器皿查看溶液组成</div></div></div>
+      <div class="reaction-card" id="reaction-card"><div class="reaction-head"><span class="reaction-orb"></span><span>反应状态</span><span class="reaction-state" id="reaction-state">待命</span></div><div id="reaction-copy" class="reaction-copy">加入试剂，开始一场自由实验</div></div>
+      <button class="primary-button" id="heat-button"><span class="heat-symbol">♨</span><span>开始加热</span><kbd>H</kbd></button>
+      <div class="log-section"><div class="section-head"><span>观察日志</span><button id="clear-log" class="mini-link">清空</button></div><div id="event-log" class="event-log"><div class="log-empty">实验现象会记录在这里</div></div></div>
+    </aside>
+    <div class="bottom-left"><span class="keyboard-hint"><kbd>1</kbd>–<kbd>6</kbd> 切换工具</span><span class="keyboard-hint"><kbd>H</kbd> 加热</span><span class="keyboard-hint"><kbd>Esc</kbd> 取消选择</span></div>
+    <div id="toast" class="toast"></div>
+    <div id="modal-backdrop" class="modal-backdrop hidden"><section class="modal"><button id="modal-close" class="modal-close">×</button><div id="modal-content"></div></section></div>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

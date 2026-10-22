@@ -4,7 +4,7 @@
 
 ## 公网访问
 
-GitHub Pages 站点：https://invincible-summer.github.io/chemistry-perform/ 。每次推送到发布分支 `arena/c14191f2-chemistry-perform` 后，会由 GitHub Actions 自动部署。
+GitHub Pages 站点：https://invincible-summer.github.io/chemistry-perform/ 。推送到 `main` 或本次工作分支后，会由 GitHub Actions 自动部署。
 
 ## 运行
 

@@ -2,7 +2,7 @@ name: Deploy public site
 
 on:
   push:
-    branches: [arena/c14191f2-chemistry-perform]
+    branches: [main, arena/c14191f2-chemistry-perform]
   workflow_dispatch:
 
 permissions:

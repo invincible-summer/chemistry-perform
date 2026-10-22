@@ -2,6 +2,10 @@
 
 一个原创的 Three.js 浏览器化学实验室体验。房间、家具、试剂瓶标签、器具与实验界面均由本项目代码程序化绘制，不引用其他项目的素材或实现。
 
+## 公网访问
+
+GitHub Pages 站点：https://invincible-summer.github.io/chemistry-perform/ 。每次推送到发布分支 `arena/c14191f2-chemistry-perform` 后，会由 GitHub Actions 自动部署。
+
 ## 运行
 
 ```bash
